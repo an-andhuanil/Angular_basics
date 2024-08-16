@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,10 +7,108 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  numbers = [1, 2, 3, 4, 5];
-  onlyOdd = false;
+  @ViewChild('f') signUpForm : NgForm;
+  defaultSubcription = 'advanced';
 
-  oddNumbers=[1,3,5,7,9]
-  evenNumbers=[2,4,6,8,10]
-  value=10;
+
+
+  onSubmit(){
+    console.log(this.signUpForm.value)
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  // defaultQuestion = 'pet';
+  // genders = ['male','female']
+  // answer = '';
+
+
+
+  // user = {
+  //   username :'',
+  //   mail :'',
+  //   secretQuestion:'',
+  //   answer:'',
+  //   gender:''
+
+  // }
+  // // suggestUserName() {
+  // //   const suggestedName = 'Superuser';
+  // // }
+
+  // onSubmit(form :NgForm){
+
+  //   this.user.username = this.signUpForm.value.userData.usename;
+  //   this.user.mail = this.signUpForm.value.userData.email;
+  //   this.user.secretQuestion = this.signUpForm.value.secret;
+  //   this.user.answer = this.signUpForm.value.questionAnswer;
+  //   this.user.gender = this.signUpForm.value.gender;
+  //   console.log(this.user);
+
+  // }
+
+  // suggestUsername(){
+  //   const suggestedName = 'Superuser';
+
+  //   console.log("btn-clicked");
+  //   // this.signUpForm.setValue({
+  //   //   userData:{
+  //   //     usename : this.suggestUserName,
+  //   //     email:''
+  //   //   }
+  //   // })
+
+  //   this.signUpForm.form.patchValue({
+  //     userData :{
+  //       usename:suggestedName
+  //     }
+
+  //   })
+  // }
 }
