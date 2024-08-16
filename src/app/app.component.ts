@@ -3,8 +3,13 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'my-app';
+  numbers = [1, 2, 3, 4, 5];
+  onlyOdd = false;
+
+  oddNumbers=[1,3,5,7,9]
+  evenNumbers=[2,4,6,8,10]
+  value=10;
 }
