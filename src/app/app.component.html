@@ -1,83 +1,24 @@
-<!-- <div class="container">
+<div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-        <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
-          <div class="form-group" >
-            <label for="username">Username</label>
-            <input type="text" id="username" class="form-control" ngModel name="usename" required>
-          </div>
-          <button class="btn btn-default" type="button" (click)="suggestUsername()">Suggest an Username</button>
-          <div class="form-group">
-            <label for="email">Mail</label>
-            <input type="email" id="email" class="form-control" ngModel name="email" required email #email="ngModel">
-            <span *ngIf="!email.valid && email.touched" class="help-block ng-touched">Please enter a valid email!</span>
-          </div>
-        </div>
-        <p *ngIf="userData.valid && userData.touched">User data is invalid!</p>
-        <div class="form-group"> 
-          <label for="secret">Secret Questions</label>
-          <select id="secret" class="form-control" [ngModel]="defaultQuestion" name="secret">
-            <option value="pet">Your first Pet?</option>
-            <option value="teacher">Your first teacher?</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <textarea class="form-control" name="questionAnswer" id=""  rows="3" [(ngModel)]="answer"></textarea>
-        </div>
-        <div class="radio" *ngFor="let gender of genders">
-          <label>
-            <input type="radio" name="gender" ngModel [value]="gender"> {{gender}}
-          </label>
-
-        </div>
-        <p>Your reply: {{answer}}</p>
-        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
-      </form>
+      <input type="text" [(ngModel)]="filteredStatus">
+      <br>
+      <br>
+      <button (click)="onAddServer()">Add</button>
+      <br>
+      <br>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let server of servers | filter:filteredStatus:'status'"
+          [ngClass]="getStatusClasses(server)" >
+          <span 
+            class="badge">
+            {{ server.status }}
+          </span>
+          <strong>{{ server.name | shorten:5 }}</strong> | {{ server.instanceType | uppercase }} | {{ server.started | date:'fullDate' }}
+        </li>
+      </ul>
     </div>
   </div>
 </div>
-
-<div class="row col-xs-12">
-  <hr>
-  <h3>user data</h3>
-  <p>user name:{{user.username}}</p>
-  <p>email:{{user.mail}}</p>
-  <p>secret question:{{user.secretQuestion}}</p>
-  <p>answer:{{user.answer}}</p>
-  <p>gender:{{user.gender}}</p>
-</div> -->
-
-
-
-<div class="row">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-    <form (ngSubmit)="onSubmit()" #f="ngForm">
-      <div class="form-group">
-        <label>email</label>
-        <input type="email" class="form-control" ngModel name="email" required #email="ngModel">
-        <span *ngIf="!email.valid && email.touched" class="help-block ng-touched" style="color: red;">Please enter a valid email!</span>
-      </div>
-      <div class="form-group"> 
-        <label for="subcription">Subcription</label>
-        <select id="sub" class="form-control" [ngModel]="defaultSubcription" name="subcription">
-          <option value="basic">Basic</option>
-          <option value="advanced">Advanced</option>
-          <option value="pro">Pro</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>password</label>
-        <input type="password" class="form-control" ngModel name="password" required #password="ngModel"> 
-        <span *ngIf="!password.empty && password.touched" class="help-block ng-touched" style="color: red;">Password invalid!</span>
-      </div>
-      <button class="btn btn-primary" type="submit">Submit</button>
-    </form>
-  </div>
-</div>
-
--27.4675993--153.0278834
-
-
-firstname 
-lastname

@@ -1,5 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,108 +6,52 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild('f') signUpForm : NgForm;
-  defaultSubcription = 'advanced';
-
-
-
-  onSubmit(){
-    console.log(this.signUpForm.value)
+  appStatus = new Promise((resolve,reject)=>{
+    setTimeout(() => {
+      resolve('stable');
+    }, 2000);
+  });
+  servers = [
+    {
+      instanceType: 'medium',
+      name: 'Production Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'large',
+      name: 'User Database',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'small',
+      name: 'Development Server',
+      status: 'offline',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'small',
+      name: 'Testing Environment Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    }
+  ];
+  filteredStatus = '';
+  getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
+    return {
+      'list-group-item-success': server.status === 'stable',
+      'list-group-item-warning': server.status === 'offline',
+      'list-group-item-danger': server.status === 'critical'
+    };
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  // defaultQuestion = 'pet';
-  // genders = ['male','female']
-  // answer = '';
-
-
-
-  // user = {
-  //   username :'',
-  //   mail :'',
-  //   secretQuestion:'',
-  //   answer:'',
-  //   gender:''
-
-  // }
-  // // suggestUserName() {
-  // //   const suggestedName = 'Superuser';
-  // // }
-
-  // onSubmit(form :NgForm){
-
-  //   this.user.username = this.signUpForm.value.userData.usename;
-  //   this.user.mail = this.signUpForm.value.userData.email;
-  //   this.user.secretQuestion = this.signUpForm.value.secret;
-  //   this.user.answer = this.signUpForm.value.questionAnswer;
-  //   this.user.gender = this.signUpForm.value.gender;
-  //   console.log(this.user);
-
-  // }
-
-  // suggestUsername(){
-  //   const suggestedName = 'Superuser';
-
-  //   console.log("btn-clicked");
-  //   // this.signUpForm.setValue({
-  //   //   userData:{
-  //   //     usename : this.suggestUserName,
-  //   //     email:''
-  //   //   }
-  //   // })
-
-  //   this.signUpForm.form.patchValue({
-  //     userData :{
-  //       usename:suggestedName
-  //     }
-
-  //   })
-  // }
+  onAddServer(){
+    this.servers.push({
+      instanceType: 'stestmall',
+      name: 'Testing Environment Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    })
+  }
 }
