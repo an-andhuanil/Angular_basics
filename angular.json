@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "routing-start": {
+    "services-start": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/routing-start",
+            "outputPath": "dist/services-start",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "routing-start:build:production"
+              "buildTarget": "services-start:build:production"
             },
             "development": {
-              "buildTarget": "routing-start:build:development"
+              "buildTarget": "services-start:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "routing-start:build"
+            "buildTarget": "services-start:build"
           }
         },
         "test": {
@@ -104,6 +104,6 @@
     }
   },
   "cli": {
-    "analytics": "e3545851-cd9f-45f6-acc5-d504da2b57ef"
+    "analytics": "e3607a01-6f90-44ea-85dd-a3902e9606e2"
   }
 }
