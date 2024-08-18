@@ -1,50 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { pipe } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Post } from './posts.model';
-import { PostsService } from './posts.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  loadedPosts : Post[] = [];
-  isFetching = false;
-  error = null;
-  constructor(private http: HttpClient, private postService : PostsService) {}
-
-  ngOnInit() {
-    this.onFetchPosts();
+export class AppComponent {
+  appStatus = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('stable');
+    }, 2000);
+  });
+  servers = [
+    {
+      instanceType: 'medium',
+      name: 'Production',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'large',
+      name: 'User Database',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'small',
+      name: 'Development Server',
+      status: 'offline',
+      started: new Date(15, 1, 2017)
+    },
+    {
+      instanceType: 'small',
+      name: 'Testing Environment Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    }
+  ];
+  filteredStatus = '';
+  getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
+    return {
+      'list-group-item-success': server.status === 'stable',
+      'list-group-item-warning': server.status === 'offline',
+      'list-group-item-danger': server.status === 'critical'
+    };
   }
-
-  onCreatePost(postData: Post) {
-    // Send Http request
-    this.postService.createAndStorePost(postData.title, postData.content);
-  }
-
-  onFetchPosts() {
-    // Send Http request
-    this.isFetching = true;
-    this.postService.fetchPosts().subscribe((posts) => {
-      this.isFetching = false;
-      this.loadedPosts = posts;
-    },(error) =>{
-      this.isFetching = false;
-      this.error = error.message;
+  onAddServer() {
+    this.servers.push({
+      instanceType: 'small',
+      name: 'New Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
     });
   }
-
-  onClearPosts() {
-    // Send Http request
-    this.postService.deletePost().subscribe((res) => {
-      this.loadedPosts = [];
-    });
-  }
-onHandlingerror(){
-  this.error = null;
-}
-  
 }
